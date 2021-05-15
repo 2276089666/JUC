@@ -23,8 +23,8 @@ public class MyContainer2<T> {
 	private int count = 0;
 	
 	private Lock lock = new ReentrantLock();
-	private Condition producer = lock.newCondition();
-	private Condition consumer = lock.newCondition();
+	private Condition producer = lock.newCondition(); // 生产者的等待队列
+	private Condition consumer = lock.newCondition(); // 消费者的等待队列
 	
 	public void put(T t) {
 		try {
