@@ -36,6 +36,7 @@ public class T14_TestStampedLock {
         long stamp = sl.tryOptimisticRead();
         double currentX = x, currentY = y;
         System.out.println(Thread.currentThread().getName()+"\tread:\t版本号"+stamp);
+        // x.y被修改过,验证失败,加读锁
         if (!sl.validate(stamp)) {
             stamp = sl.readLock();
             try {

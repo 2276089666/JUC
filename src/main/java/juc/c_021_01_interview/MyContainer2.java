@@ -6,8 +6,7 @@
  * 
  * 使用Lock和Condition来实现
  * 对比两种方式，Condition的方式可以更加精确的指定哪些线程被唤醒
- * 
- * @author mashibing
+ *
  */
 package juc.c_021_01_interview;
 

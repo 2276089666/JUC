@@ -1,10 +1,10 @@
 package juc.c_018_00_AtomicXXX;
 
 /**
- *  LongAdder比sync还是效率要高
+ *  大部分情况下LongAdder比sync还是效率要高
  */
 
-import java.util.concurrent.TimeUnit;
+
 import java.util.concurrent.atomic.LongAdder;
 
 public class T03________SyncVsLongAdder {
@@ -24,9 +24,8 @@ public class T03________SyncVsLongAdder {
         for(Thread t : threads ) t.start();
         for (Thread t : threads) t.join();
         long end = System.currentTimeMillis();
-        //TimeUnit.SECONDS.sleep(10);
         System.out.println("LongAdder: " + count.longValue() + " time " + (end-start));
-        //-----------------------------------------------------------
+
 
 
         Object lock = new Object();
@@ -49,14 +48,6 @@ public class T03________SyncVsLongAdder {
         end = System.currentTimeMillis();
         System.out.println("Sync: " + count2 + " time " + (end-start));
 
-    }
-
-    static void microSleep(int m) {
-        try {
-            TimeUnit.MICROSECONDS.sleep(m);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }

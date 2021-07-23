@@ -1,12 +1,11 @@
 package juc.c_018_00_AtomicXXX;
 
 /**
- * LongAdder采用分断锁,当线程数非常多的时候,它会把所有线程分组去做CAS操作,然后再合并结果
+ * LongAdder采用分段锁,当线程数非常多的时候,它会把所有线程分组去做CAS操作,然后再合并结果
  * 三种操作都各有优点,需要合适的场景
  * 效率 LongAddr > Atomic > sync
  */
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
@@ -18,6 +17,7 @@ public class T02_AtomicVsSyncVsLongAdder {
     public static void main(String[] args) throws Exception {
         Thread[] threads = new Thread[1000];
 
+        // AtomicLong
         for(int i=0; i<threads.length; i++) {
             threads[i] =
                     new Thread(()-> {
@@ -28,11 +28,10 @@ public class T02_AtomicVsSyncVsLongAdder {
         for(Thread t : threads ) t.start();
         for (Thread t : threads) t.join();
         long end = System.currentTimeMillis();
-
-        //TimeUnit.SECONDS.sleep(10);
         System.out.println("Atomic: " + count1.get() + " time " + (end-start));
-        //-----------------------------------------------------------
 
+
+        // sync
         Object lock = new Object();
         for(int i=0; i<threads.length; i++) {
             threads[i] =
@@ -54,7 +53,7 @@ public class T02_AtomicVsSyncVsLongAdder {
         System.out.println("Sync: " + count2 + " time " + (end-start));
 
 
-        //----------------------------------
+        // LongAdder
         for(int i=0; i<threads.length; i++) {
             threads[i] =
                     new Thread(()-> {
@@ -65,17 +64,7 @@ public class T02_AtomicVsSyncVsLongAdder {
         for(Thread t : threads ) t.start();
         for (Thread t : threads) t.join();
         end = System.currentTimeMillis();
-        //TimeUnit.SECONDS.sleep(10);
         System.out.println("LongAdder: " + count1.longValue() + " time " + (end-start));
 
     }
-
-    static void microSleep(int m) {
-        try {
-            TimeUnit.MICROSECONDS.sleep(m);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -40,4 +40,4 @@ public class T02_HowToCreateThread {
 
 }
 
-//请你告诉我启动线程的四种方式 1：Thread 2: Runnable 3:Executors.newCachedThrad 4.实现callable
+//请你告诉我启动线程的四种方式 1：Thread 2: Runnable 3:Executors.newCachedThread 4.实现callable

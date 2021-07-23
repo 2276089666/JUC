@@ -59,9 +59,9 @@ public class T01_TestHashtable {
         }
 
         long end = System.currentTimeMillis();
-        System.out.println(end - start);
+        System.out.println("插入花费时间:\t"+(end - start));
 
-        System.out.println(m.size());
+        System.out.println("容器对象数量:\t"+m.size());
 
         //-----------------------------------
 
@@ -87,6 +87,6 @@ public class T01_TestHashtable {
         }
 
         end = System.currentTimeMillis();
-        System.out.println(end - start);
+        System.out.println("查询花费时间:\t"+(end - start));
     }
 }

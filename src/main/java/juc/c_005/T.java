@@ -19,7 +19,7 @@ public class T implements Runnable {
 		for(int i=0; i<100; i++) {
 			new Thread(t, "THREAD:\t" + i).start();
 		}
-		// 导致线程读到的不是最新值,上面两个关键字加一个就行,都保证了可见性
+		// 导致线程读到的不是最新值,volatile,synchronized两个关键字加一个就行,都保证了可见性
 	}
 	
 }

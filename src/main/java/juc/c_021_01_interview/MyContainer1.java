@@ -3,8 +3,7 @@
  * 能够支持2个生产者线程以及10个消费者线程的阻塞调用
  * 
  * 使用wait和notify/notifyAll来实现
- * 
- * @author mashibing
+ *
  */
 package juc.c_021_01_interview;
 
