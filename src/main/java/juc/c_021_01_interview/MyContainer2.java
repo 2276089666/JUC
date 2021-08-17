@@ -29,6 +29,9 @@ public class MyContainer2<T> {
 		try {
 			lock.lock();
 			while(lists.size() == MAX) { //想想为什么用while而不是用if？
+										 // 生产者的线程有两个,当两个生产者线程都await()时,此时消费者
+										 // 只消费了一个,但是调用producer.signalAll(),同时唤醒了两个生产者
+										 // 如果是if,必然导致有一个线程put的时候导致容器越界
 				producer.await();
 			}
 			
